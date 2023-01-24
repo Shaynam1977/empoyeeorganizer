@@ -1,0 +1,23 @@
+{
+  "name": "empoyeeorganizer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shaynam1977/empoyeeorganizer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shaynam1977/empoyeeorganizer/issues"
+  },
+  "homepage": "https://github.com/Shaynam1977/empoyeeorganizer#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4",
+    "mysql2": "^3.0.1"
+  }
+}
