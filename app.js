@@ -80,7 +80,27 @@ function viewEmployees(){
 }
 
 function createEmployee(){
-    connection.query()
+    connection.query("select * from role", (err,roleRes)=>{
+        if(err) throw err
+        inquirer.prompt([
+            {
+                type:"input", name:"firstName", message:"What is the first name of employee?"
+            }, 
+            {
+                type:"input", name:"lastName", message:"What is the last name of the employee?"
+            }, 
+            {
+                type:"list", name:"roleId", message:"What is the role title for the new employee?",
+                choices:roleRes.map(role=>role.title)
+            }, 
+        ]).then(data=>{
+            var role=roleRes.find(role=>role.title===data.roleId)
+            connection.query("insert into employee set ?", {
+                first_name:data.firstName, last_name:data.lastName, role_id:role.id
+            })
+            askQuestions()
+        })
+    })
 }
 
 function createDepartment(){
