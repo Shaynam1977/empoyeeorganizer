@@ -97,11 +97,31 @@ function createDepartment(){
 }
 
 function createRole(){
-
+    connection.query("select * from department", (err,depRes)=>{
+        if(err) throw err
+        inquirer.prompt([
+            {
+                type:"input", name:"title", message:"What is the title for the new role?"
+            }, 
+            {
+                type:"input", name:"salary", message:"What is the salary for the new role?"
+            }, 
+            {
+                type:"list", name:"departmentId", message:"What is the department for the new role?",
+                choices:depRes.map(department=>department.name)
+            }, 
+        ]).then(data=>{
+            var department=depRes.find(department=>department.name===data.departmentId)
+            connection.query("insert into role set ?", {
+                title:data.title, salary:data.salary, department_id:department.id
+            })
+            askQuestions()
+        })
+    })
 }
 
 function updateRole(){
-
+    connection.query("")
 }
 
 askQuestions()
